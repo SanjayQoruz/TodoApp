@@ -4,6 +4,7 @@ import 'package:myapp/services/hive/delete_task.dart';
 import 'package:myapp/services/services.dart';
 import '../../models/models.dart';
 import './../pages.dart';
+import './../../styles/styles.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -28,10 +29,13 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         leading:isSearchSelected?
         IconButton(onPressed: ()=>{
-            setState(()=>isSearchSelected=false)
+            setState(()=>isSearchSelected=false),
+            setState(() {
+               searchController.text = ' ';
+            })
         }, icon:const Icon(
               Icons.cancel,
-              color:Colors.black,
+              color:AppColor.secondaryColor,
               size:35,
           ))
         :IconButton(
@@ -40,42 +44,32 @@ class _HomePageState extends State<HomePage> {
             },
             icon: const Icon(
               Icons.search,
-              color:Colors.black,
+              color:AppColor.secondaryColor,
               size:35,
             ),
         ),
         title:isSearchSelected?Container(
           margin: const EdgeInsets.only(bottom:20),
           decoration:const BoxDecoration(
-              border: Border(bottom:BorderSide(color: Colors.black))
+              border: Border(bottom:BorderSide(color:AppColor.secondaryColor))
           ),
           child: TextField(
               onChanged: (value) => setState(()=>searchController.text=value),
               controller:searchController,
-              cursorColor:Colors.black,
+              cursorColor:AppColor.secondaryColor,
               cursorHeight:50,
-               style:const TextStyle(
-                  color: Colors.black,
-                  fontSize:30
-               ),
-                decoration:const InputDecoration(
+               style:MediumFont.primary,
+                decoration: InputDecoration(
                      hintText:"Search.....",
-                     hintStyle: TextStyle(
-                        color: Colors.black,
-                        fontSize:20
-                     ),
+                     hintStyle:SmallFont.primary
                 ),
           ),
         ):
-        const Text(
+        Text(
           "Todo App",
-          style:TextStyle(
-            color: Colors.black,
-            fontSize: 40,
-            fontWeight: FontWeight.w700,
-            fontStyle: FontStyle.italic)
+          style:BigFont.primary
         ),
-        backgroundColor: Colors.black12,
+        backgroundColor:AppColor.appBarColor,
       ),
       body: Column(
         children: [
@@ -97,14 +91,10 @@ class _HomePageState extends State<HomePage> {
               return Flexible(
                 flex: 3,
                 child:tasks.isEmpty?
-                const Center(
+                 Center(
                     child: Text(
                       "No Task Found",
-                      style: TextStyle(
-                          fontSize:30,
-                          fontStyle: FontStyle.italic,
-                          color: Colors.black
-                      ),
+                      style: BigFont.primary
                     ),
                 )
                 :Container(
@@ -117,7 +107,7 @@ class _HomePageState extends State<HomePage> {
                       return Container(
                         margin: const EdgeInsets.all(10),
                         decoration: const BoxDecoration(
-                          color: Colors.white,
+                          color:AppColor.primaryColor,
                           boxShadow: [
                             BoxShadow(
                                 color: Colors.grey,
@@ -132,15 +122,14 @@ class _HomePageState extends State<HomePage> {
                                     builder: (context) =>
                                         ViewPage(viewTask: task))),
                             leading: CircleAvatar(
-                                backgroundColor: Colors.black,
+                                backgroundColor:AppColor.secondaryColor,
                                 child: Text(
                                   "$index",
-                                  style: const TextStyle(color: Colors.white),
+                                  style: const TextStyle(color:AppColor.primaryColor),
                                 )),
                             title: Text(
                               task.title,
-                              style: const TextStyle(
-                                  fontSize: 20, fontWeight: FontWeight.w600),
+                              style: SmallFont.primary
                             ),
                             subtitle: Text(
                               description,
@@ -168,7 +157,7 @@ class _HomePageState extends State<HomePage> {
                                             },
                                         icon: const Icon(
                                           Icons.delete,
-                                          color: Colors.red,
+                                          color:AppColor.deleteBtnColor,
                                         )),
                                   ],
                                 ))),
@@ -183,11 +172,11 @@ class _HomePageState extends State<HomePage> {
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () => {navigateToTodoPage()},
-        label: const Text(
+        label: Text(
           "Add Task",
-          style: TextStyle(color: Colors.white, fontSize: 22),
+          style: SmallFont.secondary,
         ),
-        backgroundColor: Colors.black,
+        backgroundColor:AppColor.secondaryColor,
       ),
     );
   }

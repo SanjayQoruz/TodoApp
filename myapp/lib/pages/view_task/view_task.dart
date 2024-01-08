@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:myapp/models/task_model.dart';
+import './../../styles/styles.dart';
 
 // ignore: must_be_immutable
 class ViewPage extends StatefulWidget{
@@ -17,19 +18,14 @@ class _ViewPageState extends State<ViewPage> {
         return Scaffold(
              appBar: AppBar(
                   title:const Text("View Task"),
-                  titleTextStyle:const TextStyle(
-                    color:Colors.black,
-                    fontSize:30,
-                    fontStyle: FontStyle.italic,
-                    fontWeight:FontWeight.w700,
-                  ),
+                  titleTextStyle:BigFont.primary
              ),
               body: Column(
                   children: [
                     Container(
                           margin:const EdgeInsets.all(20),
                           decoration: const BoxDecoration(
-                               color:Color(0xffA7FEEA),
+                               color:AppColor.noteColor,
                                borderRadius: BorderRadius.all(Radius.circular(20))
                           ),
                           padding: const EdgeInsets.all(20),
@@ -41,12 +37,7 @@ class _ViewPageState extends State<ViewPage> {
                                   children: [
                                     Text(
                                       model.title,
-                                      style:const TextStyle(
-                                         fontStyle: FontStyle.italic,
-                                         fontWeight: FontWeight.w700,
-                                         fontSize: 30,
-                                         letterSpacing:2
-                                      ),
+                                      style:MediumFont.primary
                                     ),
                                     const Text(
                                       "🙌",
@@ -58,15 +49,10 @@ class _ViewPageState extends State<ViewPage> {
                                 ),
                                 const SizedBox(height:20,),
                                  Container(
-                                    margin: EdgeInsets.all(20),
+                                    margin:const EdgeInsets.all(20),
                                     child: Text(
                                       model.description,
-                                      style:const TextStyle(
-                                         fontStyle: FontStyle.italic,
-                                         fontWeight: FontWeight.w700,
-                                         fontSize: 15,
-                                         letterSpacing:2
-                                      ),
+                                      style:SmallFont.primary
                                     ),
                                   ),
                               ],

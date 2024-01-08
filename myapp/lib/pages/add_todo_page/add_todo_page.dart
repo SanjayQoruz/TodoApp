@@ -3,6 +3,7 @@ import 'package:myapp/models/task_model.dart';
 import 'package:myapp/services/hive/add_task.dart';
 import 'package:myapp/services/hive/delete_task.dart';
 import '../../services/services.dart';
+import './../../styles/styles.dart';
 
 // ignore: must_be_immutable
 class AddTodoPage extends StatefulWidget{
@@ -31,20 +32,17 @@ class _AddTodoPageState extends State<AddTodoPage>{
            return Scaffold(
               appBar:AppBar(
                   title:const Text("Add Todo"),
+                  titleTextStyle: BigFont.primary,
               ),
               body:ListView(
                 padding:const EdgeInsets.all(6),
                 children: [
                         TextField(
                         controller:titleController,
-                        style:const TextStyle(
-                          fontSize:25,
-                         ),
-                          decoration:const InputDecoration(
+                        style:TextFieldFont.primary,
+                          decoration: InputDecoration(
                               hintText:'title',
-                              hintStyle: TextStyle(
-                                  fontSize:20
-                              )
+                              hintStyle:HintFont.primary
                           ),
                           cursorColor: Colors.grey,
                           
@@ -52,15 +50,11 @@ class _AddTodoPageState extends State<AddTodoPage>{
                       const SizedBox(height:20,),
                        TextField(
                         controller: descriptionController,
-                      style:const TextStyle(
-                          fontSize:25,
-                      ),
+                      style:TextFieldFont.primary,
                       cursorColor:Colors.grey,
-                          decoration:const InputDecoration(
+                          decoration: InputDecoration(
                               hintText:'description',
-                              hintStyle: TextStyle(
-                                  fontSize:20
-                              ),
+                              hintStyle: HintFont.primary,
                           ),
                           minLines:5,
                           maxLines:10,
@@ -70,20 +64,16 @@ class _AddTodoPageState extends State<AddTodoPage>{
                      ElevatedButton(
                       style:const ButtonStyle(
                            backgroundColor:MaterialStatePropertyAll(
-                             Colors.blueAccent
+                              AppColor.submitBtnColor
                            ),
                       ),
                       onPressed: ()=>{
                           createTask(),
                           Navigator.pop(context)
                       },
-                       child:const Text(
+                       child: Text(
                         "submit",
-                        style: TextStyle(
-                             color: Colors.black,
-                             fontSize:30,
-                             fontStyle: FontStyle.italic
-                        ),
+                        style:MediumFont.primary
                        )
 
                      )
